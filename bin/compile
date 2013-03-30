@@ -39,11 +39,13 @@ echo "-----> Bundling PHP version $PHP_VERSION"
 curl --silent --max-time 60 --location "$PHP_URL" | tar xz
 
 #@note @neko @haxe installer neko
-NEKO_URL="http://nekovm.org/_media/neko-2.0.0-linux64.tar.gz"
+NEKO_URL="http://nekovm.org/_media/neko-1.8.2-linux64.tar.gz"
 echo "-----> Building HAXE"
 curl --silent --max-time 60 --location "$NEKO_URL" | tar xz
-mv neko-2.0.0-linux neko
-ln -s /app/neko/libneko.so /usr/lib/libneko.so
+mv neko-1.8.2-linux64 neko
+mkdir /app/lib
+cp $LP_DIR/lib/libgc.tar /app/lib
+tar xf /app/lib/libgc.tar
 
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
@@ -66,6 +68,7 @@ export PHP_INI_SCAN_DIR=/app/www
 #@note @neko @haxe
 export NEKOPATH=/app/neko
 export PATH=$PATH:/app/neko
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/neko:/app/lib
 echo "Launching apache"
 exec /app/apache/bin/httpd -DNO_DETACH
 EOF
