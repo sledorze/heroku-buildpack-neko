@@ -1,6 +1,9 @@
 Apache+PHP build pack
 ========================
 
+STATUS: WORK-IN-PROGRESS
+========================
+
 This is a build pack bundling PHP and Apache for Heroku apps.
 
 Configuration
