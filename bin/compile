@@ -38,10 +38,10 @@ PHP_URL="https://s3.amazonaws.com/php-lp/php-$PHP_VERSION.tar.gz"
 echo "-----> Bundling PHP version $PHP_VERSION"
 curl --silent --max-time 60 --location "$PHP_URL" | tar xz
 
-HAXE_URL="http://haxe.org/file/hxinst-linux.tgz"
+NEKO_URL="http://nekovm.org/_media/neko-2.0.0-linux.tar.gz?id=download&cache=cache"
 echo "-----> Building HAXE"
-curl --silent --max-time 60 --location "$HAXE_URL" | tar xz
-./hxinst-linux
+curl --silent --max-time 60 --location "$NEKO_URL" | tar xz
+mv neko-2.0.0-linux neko
 
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
@@ -61,6 +61,7 @@ tail -F /app/apache/logs/error_log &
 tail -F /app/apache/logs/access_log &
 export LD_LIBRARY_PATH=/app/php/ext
 export PHP_INI_SCAN_DIR=/app/www
+export NEKOPATH=/app/neko
 echo "Launching apache"
 exec /app/apache/bin/httpd -DNO_DETACH
 EOF
