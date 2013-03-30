@@ -7,8 +7,7 @@ set -e
 # config
 APACHE_VERSION="2.2.22"
 APACHE_PATH="apache"
-PHP_VERSION="5.3.10"
-PHP_PATH="php"
+
 
 BIN_DIR=$(dirname $0)
 BUILD_DIR=$1
@@ -34,10 +33,6 @@ APACHE_URL="https://s3.amazonaws.com/php-lp/apache-$APACHE_VERSION.tar.gz"
 echo "-----> Bundling Apache version $APACHE_VERSION"
 curl --silent --max-time 60 --location "$APACHE_URL" | tar xz
 
-PHP_URL="https://s3.amazonaws.com/php-lp/php-$PHP_VERSION.tar.gz"
-echo "-----> Bundling PHP version $PHP_VERSION"
-curl --silent --max-time 60 --location "$PHP_URL" | tar xz
-
 #@note @neko @haxe installer neko
 NEKO_URL="http://nekovm.org/_media/neko-1.8.2-linux64.tar.gz"
 echo "-----> Building HAXE"
@@ -50,12 +45,11 @@ tar xf lib/libgc.tar -C lib
 
 
 # update config files
-cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
-cp $LP_DIR/conf/php.ini php
+
 
 # make php available on bin
-mkdir -p bin
-ln -s /app/php/bin/php bin/php
+#mkdir -p bin
+#ln -s /app/php/bin/php bin/php
 
 cat >>boot.sh <<EOF
 for var in \`env|cut -f1 -d=\`; do
@@ -65,8 +59,8 @@ touch /app/apache/logs/error_log
 touch /app/apache/logs/access_log
 tail -F /app/apache/logs/error_log &
 tail -F /app/apache/logs/access_log &
-export LD_LIBRARY_PATH=/app/php/ext
-export PHP_INI_SCAN_DIR=/app/www
+#export LD_LIBRARY_PATH=/app/php/ext
+#export PHP_INI_SCAN_DIR=/app/www
 #@note @neko @haxe
 export NEKOPATH=/app/neko
 export PATH=$PATH:/app/neko
