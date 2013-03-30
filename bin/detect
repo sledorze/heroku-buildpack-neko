@@ -3,7 +3,7 @@
 if [ -f $1/index.php ]; then
   echo "PHP" && exit 0
 ## ADDED   
-elif [ -f $1.index.n]; then
+elif [ -f $1/index.n ]; then
   echo "NEKO" && exit 0
 else
   echo "no" && exit 1
