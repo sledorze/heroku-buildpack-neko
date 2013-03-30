@@ -43,7 +43,7 @@ NEKO_URL="http://nekovm.org/_media/neko-1.8.2-linux64.tar.gz"
 echo "-----> Building HAXE"
 curl --silent --max-time 60 --location "$NEKO_URL" | tar xz
 mv neko-1.8.2-linux64 neko
-mkdir /app/lib
+mkdir -p /app/lib
 cp $LP_DIR/lib/libgc.tar /app/lib
 tar xf /app/lib/libgc.tar
 
