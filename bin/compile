@@ -42,7 +42,7 @@ curl --silent --max-time 60 --location "$PHP_URL" | tar xz
 NEKO_URL="http://nekovm.org/_media/neko-2.0.0-linux64.tar.gz"
 echo "-----> Building HAXE"
 curl --silent --max-time 60 --location "$NEKO_URL" | tar xz
-mv neko-2.0.0-linux neko
+mv neko-2.0.0-linux64 neko
 
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
