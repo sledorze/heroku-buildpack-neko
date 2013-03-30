@@ -38,8 +38,9 @@ PHP_URL="https://s3.amazonaws.com/php-lp/php-$PHP_VERSION.tar.gz"
 echo "-----> Bundling PHP version $PHP_VERSION"
 curl --silent --max-time 60 --location "$PHP_URL" | tar xz
 
-HAXE_URL=""
-sudo apt-get install haxe -y
+HAXE_URL="http://haxe.org/file/hxinst-linux.tgz"
+echo "-----> Building HAXE"
+curl --silent --max-time 60 --location "$HAXE_URL" | tar xz
 
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
