@@ -41,6 +41,7 @@ curl --silent --max-time 60 --location "$PHP_URL" | tar xz
 HAXE_URL="http://haxe.org/file/hxinst-linux.tgz"
 echo "-----> Building HAXE"
 curl --silent --max-time 60 --location "$HAXE_URL" | tar xz
+./hxinst-linux
 
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
