@@ -45,7 +45,7 @@ curl --silent --max-time 60 --location "$NEKO_URL" | tar xz
 mv neko-1.8.2-linux64 neko
 mkdir -p lib
 cp $LP_DIR/lib/libgc.tar lib 
-tar xf lib/libgc.tar
+tar xf lib/libgc.tar -C lib
 
 
 
