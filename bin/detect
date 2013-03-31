@@ -2,6 +2,8 @@
 
 if [ -f $1/index.n ]; then
   echo "NEKO" && exit 0
+elif [ -f $1/web/index.n ]; then
+  echo "NEKO" && exit 0
 else
   echo "no" && exit 1
 fi
