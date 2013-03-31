@@ -32,6 +32,7 @@ fi
 APACHE_URL="https://s3.amazonaws.com/php-lp/apache-$APACHE_VERSION.tar.gz"
 echo "-----> Bundling Apache version $APACHE_VERSION"
 curl --silent --max-time 60 --location "$APACHE_URL" | tar xz
+cp $LP_DIR/conf/httpd.conf apache/conf
 
 #@note @neko @haxe installer neko
 NEKO_URL="http://nekovm.org/_media/neko-1.8.2-linux64.tar.gz"
